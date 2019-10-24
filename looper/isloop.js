@@ -2,7 +2,24 @@
 
 //Complete this algo
 const isLoop = (linkedlist) => {
+  let log = [];
+  let loop = false;
+  let currentNode = linkedlist.head;
 
+
+  while (currentNode !== null) {
+
+    log.forEach(node => {
+      if (node.next === currentNode.next) loop = true
+    })
+
+    if (loop) return true
+
+    log.push(currentNode);
+
+    currentNode = currentNode.next
+  }
+  return false
 };
 
 

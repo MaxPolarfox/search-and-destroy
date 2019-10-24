@@ -1,11 +1,11 @@
 'use strict';
-const {expect} = require('chai');
+const { expect } = require('chai');
 const LinkedList = require('./linkedlist');
 const isLoop = require('./isloop');
 
-const numbers = [1,2,3,4,5,6,7,8,9,10];
-const letters = ['a','b','c','d','e','f','g','h','i'];
-const emojis = ['🥚','🐣','🦅 ', '👾'];
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
+const emojis = ['🥚', '🐣', '🦅 ', '👾'];
 
 
 //These LLs have loops!
@@ -24,15 +24,27 @@ const test3 = new LinkedList();
 test3.addToHead('📺');
 emojis.forEach(el => test3.addToTail(el))
 
+
+const test4 = new LinkedList();
+test4.addToTail('3');
+test4.addToTail('4');
+test4.addToTail('5');
+test4.getNthNode(3).next = test4.getNthNode(1);
+
+
 describe('isLoop function', () => {
-	
+
 	// Feel free to write a few tests of your own! :)
-	it('returns true if linked list contains a loop', () =>{
+	it('returns true if linked list contains a loop', () => {
 		expect(isLoop(test1)).to.equal(true);
 		expect(isLoop(test2)).to.equal(true);
 	});
 
-	it('returns false if linked list contains no loop', () =>{
+	it('returns false if linked list contains no loop', () => {
 		expect(isLoop(test3)).to.equal(false);
+	});
+
+	it('loop on test 4 returns true', () => {
+		expect(isLoop(test4)).to.equal(true);
 	});
 });
